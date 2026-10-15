@@ -159,7 +159,8 @@ class Renderer:
         t = self.time
         for i in range(0, stage.width, 40):
             alpha = int(18 + 14 * math.sin(t * 1.5 + i * 0.02))
-            color = (alpha + 24, alpha // 2 + 12, alpha // 3 + 18)
+            base = config.COLOR_IDLE_LINE[0]
+            color = (base + alpha, base + alpha, base + alpha)
             pygame.draw.line(self.screen, color, (stage.x + i, stage.y), (stage.x + i, stage.bottom))
         self._blit_text(
             "SIN CÁMARA  ·  usa el teclado",
@@ -253,8 +254,8 @@ class Renderer:
         pygame.draw.rect(self.screen, config.COLOR_ACCENT, hit_line, border_radius=3)
 
     def draw_hud(self, hud: HudData) -> None:
-        self._blit_text("MANO MUSICAL", self.font_md, config.COLOR_ACCENT, 16, 12)
-        mode_label = {"free": "LIBRE", "game": "JUEGO: JINGLE BELLS", "demo": "DEMO AUTOMÁTICA", "replay": "REPLAY"}.get(
+        self._blit_text("PROYECTO MUSICAL", self.font_md, config.COLOR_ACCENT, 16, 12)
+        mode_label = {"free": "MODO LIBRE", "game": "JUEGO: JINGLE BELLS", "demo": "TEST AUTOMÁTICO", "replay": "REPLAY"}.get(
             hud.mode, hud.mode.upper()
         )
         self._blit_text(mode_label, self.font_md, config.COLOR_TEXT, 230, 12)

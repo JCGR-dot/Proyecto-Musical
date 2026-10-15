@@ -29,7 +29,7 @@ HAND_LANDMARKER_URL = (
 # --------------------------------------------------------------------------
 # Ventana / captura
 # --------------------------------------------------------------------------
-WINDOW_TITLE = "Mano Musical :: Air-Piano con MediaPipe"
+WINDOW_TITLE = "PROYECTO MUSICAL"
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 TARGET_FPS = 60
@@ -146,33 +146,35 @@ SCORE_OK = 40
 SCORE_MISS = 0
 
 # --------------------------------------------------------------------------
-# Paleta visual: "Atardecer" (fondo violeta oscuro, notas de violeta a dorado)
+# Paleta visual: neutra (grises carbón, blanco hueso y un toque de beige)
 # --------------------------------------------------------------------------
-COLOR_BG = (22, 14, 28)
-COLOR_PANEL = (34, 22, 44)
-COLOR_PANEL_LIGHT = (62, 42, 78)
-COLOR_TEXT = (250, 238, 230)
-COLOR_TEXT_DIM = (158, 136, 168)
-COLOR_ACCENT = (255, 190, 60)  # dorado: título, combo, línea de acierto
-COLOR_ACCENT_2 = (235, 64, 110)  # rosa rojizo: REC, calibración, fallo
-COLOR_WARN = (255, 130, 90)  # coral: avisos y orientación
-COLOR_OK = (110, 220, 200)  # menta: acierto "good"
+COLOR_BG = (18, 18, 18)
+COLOR_PANEL = (28, 28, 28)
+COLOR_PANEL_LIGHT = (58, 58, 58)
+COLOR_TEXT = (236, 236, 232)
+COLOR_TEXT_DIM = (140, 140, 138)
+COLOR_ACCENT = (245, 245, 240)  # blanco hueso: título, combo, línea de acierto
+COLOR_ACCENT_2 = (196, 184, 170)  # beige: REC, calibración, fallo
+COLOR_WARN = (168, 164, 158)  # gris cálido: avisos y orientación
+COLOR_OK = (214, 214, 208)  # gris claro: acierto "good"
 
-COLOR_ON_NOTE = (30, 18, 36)  # texto sobre una nota o tecla iluminada
-COLOR_JOINT = (255, 244, 232)  # puntos de las articulaciones de la mano
-COLOR_OVERLAY = (16, 10, 20, 225)  # velo de la pantalla de ayuda (RGBA)
+COLOR_ON_NOTE = (20, 20, 20)  # texto sobre una nota o tecla iluminada
+COLOR_JOINT = (240, 240, 236)  # puntos de las articulaciones de la mano
+COLOR_OVERLAY = (10, 10, 10, 225)  # velo de la pantalla de ayuda (RGBA)
+COLOR_IDLE_LINE = (30, 30, 30)  # base de las líneas del fondo sin cámara
 
+# Escala de grises de la nota más grave (más oscura) a la más aguda (más clara).
 NOTE_COLORS = {
-    "C4": (143, 98, 235),
-    "D4": (184, 98, 226),
-    "E4": (222, 98, 200),
-    "F4": (244, 98, 160),
-    "G4": (255, 110, 120),
-    "A4": (255, 138, 92),
-    "B4": (255, 166, 76),
-    "C5": (255, 194, 80),
-    "D5": (255, 220, 108),
-    "E5": (255, 238, 150),
+    "C4": (124, 122, 118),
+    "D4": (138, 136, 132),
+    "E4": (152, 150, 146),
+    "F4": (166, 164, 160),
+    "G4": (180, 178, 174),
+    "A4": (194, 192, 188),
+    "B4": (208, 206, 202),
+    "C5": (222, 220, 216),
+    "D5": (236, 234, 230),
+    "E5": (250, 248, 244),
 }
 
 # Conexiones del esqueleto de la mano (índices de landmarks MediaPipe).
