@@ -229,14 +229,16 @@ class Renderer:
             base = tuple(min(255, int(c * (0.28 + 0.5 * glow))) for c in color)
             if active:
                 base = color
-            pygame.draw.rect(self.screen, base, rect, border_radius=10)
-            pygame.draw.rect(self.screen, color, rect, 3, border_radius=10)
+            cx, cy = rect.center
+            radius = min(rect.width, rect.height) // 2
+            pygame.draw.circle(self.screen, base, (cx, cy), radius)
+            pygame.draw.circle(self.screen, color, (cx, cy), radius, 3)
             solfeo = config.SOLFEGE.get(note[0], "?")
             text_color = config.COLOR_ON_NOTE if active else config.COLOR_TEXT
-            self._blit_text(solfeo, self.font_md, text_color, rect.centerx, rect.y + 34, center=True)
-            self._blit_text(note, self.font_sm, text_color, rect.centerx, rect.y + 62, center=True)
+            self._blit_text(solfeo, self.font_md, text_color, cx, cy - 24, center=True)
+            self._blit_text(note, self.font_sm, text_color, cx, cy + 2, center=True)
             key_char = next((k for k, v in config.KEYBOARD_MAP.items() if v == note), "")
-            self._blit_text(key_char.upper(), self.font_md, text_color, rect.centerx, rect.bottom - 34, center=True)
+            self._blit_text(key_char.upper(), self.font_md, text_color, cx, cy + 30, center=True)
         self._blit_text("Do Re Mi ... escala", self.font_sm, config.COLOR_TEXT_DIM, 12, band_top - 22)
 
     def draw_falling_notes(self, upcoming: list, horizon: float = 3.0) -> None:
@@ -246,10 +248,9 @@ class Renderer:
             y = int(stage.y + ratio * (stage.height - 10))
             rect = self.key_rect(target.note)
             color = config.NOTE_COLORS.get(target.note, config.COLOR_ACCENT)
-            pill = pygame.Rect(rect.x + 10, y - 16, rect.width - 20, 32)
-            pygame.draw.rect(self.screen, color, pill, border_radius=16)
-            pygame.draw.rect(self.screen, config.COLOR_TEXT, pill, 2, border_radius=16)
-            self._blit_text(target.note, self.font_sm, config.COLOR_ON_NOTE, pill.centerx, pill.centery, center=True)
+            pygame.draw.circle(self.screen, color, (rect.centerx, y), 22)
+            pygame.draw.circle(self.screen, config.COLOR_TEXT, (rect.centerx, y), 22, 2)
+            self._blit_text(target.note, self.font_sm, config.COLOR_ON_NOTE, rect.centerx, y, center=True)
         hit_line = pygame.Rect(stage.x, self.height - self.KEY_BAND_HEIGHT - 6, stage.width, 6)
         pygame.draw.rect(self.screen, config.COLOR_ACCENT, hit_line, border_radius=3)
 
